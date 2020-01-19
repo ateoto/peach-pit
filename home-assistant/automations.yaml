@@ -1,0 +1,43 @@
+- id: '1578422596607'
+  alias: Turn On Grow Lights
+  description: ''
+  trigger:
+  - at: '7:00'
+    platform: time
+  condition: []
+  action:
+    entity_id:
+      - switch.basement_grow_light
+      - switch.window_grow_light
+    service: switch.turn_on
+- id: '1578422662757'
+  alias: Turn Off Grow Lights
+  description: ''
+  trigger:
+  - at: 0:00
+    platform: time
+  condition: []
+  action:
+    entity_id: 
+     - switch.basement_grow_light
+     - switch.basement_grow_light
+    service: switch.turn_off
+- id: '1578458330465'
+  alias: Morning Lights
+  description: ''
+  trigger:
+  - at: '7:00'
+    platform: time
+  condition: []
+  action:
+  - scene: scene.morning
+- id: '1578543766284'
+  alias: Turn off Fan in the Morning
+  description: ''
+  trigger:
+  - at: '6:30'
+    platform: time
+  condition: []
+  action:
+    entity_id: switch.bedroom_box_fan
+    service: switch.turn_off

@@ -1,0 +1,55 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+   base_url: peach.mccants.io:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+# Example configuration.yaml entry
+cover:
+  - platform: myq
+    username: !secret myq_user
+    password: !secret myq_pass
+
+climate:
+  - platform: zwave
+
+sensor:   
+  - platform: waze_travel_time
+    origin: !secret home_address
+    destination: !secret work_address
+    region: 'US'
+    name: Matt's Commute
+
+binary_sensor:
+  - platform: template
+    sensors:
+      aeotec_limited_zwa008_door_window_sensor_7:
+        friendly_name: "Basement Garage Door"
+        device_class: door
+        value_template: "{{ is_state('aeotec_limited_zwa008_door_window_sensor_7_access_control', '22') }}"
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_token
+    units: si
+
+sensor:
+  - platform: synologydsm
+    host: 192.168.1.200
+    username: !secret synology_user
+    password: !secret synology_pass
+    monitored_conditions:
+      - cpu_total_load
+      - memory_real_usage
+
+    
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml

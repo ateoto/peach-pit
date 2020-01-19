@@ -1,0 +1,85 @@
+- id: '1578427222197'
+  name: Morning
+  entities:
+    light.bed:
+      brightness: 254
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Bed
+      hs_color:
+      - 38.88
+      - 49.02
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 210
+      - 129
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.447
+      - 0.406
+    light.bed_strip:
+      brightness: 254
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Bed Strip
+      hs_color:
+      - 38.88
+      - 49.02
+      rgb_color:
+      - 255
+      - 210
+      - 129
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.447
+      - 0.406
+    light.nightstand_ash:
+      brightness: 254
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Nightstand Ash
+      hs_color:
+      - 38.88
+      - 49.02
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 210
+      - 129
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.447
+      - 0.406
+    light.nightstand_matt:
+      brightness: 254
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Nightstand Matt
+      hs_color:
+      - 38.88
+      - 49.02
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 210
+      - 129
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.447
+      - 0.406
