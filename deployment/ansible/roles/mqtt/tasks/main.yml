@@ -1,6 +1,6 @@
 ---
 
-- name: apt upgdate
+- name: apt update
   apt:
     update_cache: yes
   become: yes
@@ -19,3 +19,24 @@
 - name: reboot
   reboot:
   when: bluetooth_installed.changed
+
+- name: add mosquitto repo key
+  apt_key:
+    url: https://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+    state: present
+  become: yes
+
+- name: add mosquitto sources
+  apt_repository:
+    repo: deb https://repo.mosquitto.org/debian stretch main
+  become: yes
+
+- name: install mosquitto
+  apt:
+    name:
+      - libmosquitto-dev
+      - mosquitto
+      - mosquitto-clients
+      - libmosquitto1
+    update_cache: yes
+  become: yes
