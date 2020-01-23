@@ -1,7 +1,11 @@
 ---
 
-- name: Apt Update
+- name: apt update
   apt:
-    name: "*"
     update_cache: yes
-    state: latest
+  become: yes
+
+- name: apt upgrade
+  apt:
+    upgrade: safe
+  become: yes

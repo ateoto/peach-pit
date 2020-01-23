@@ -1,0 +1,21 @@
+---
+
+- name: apt upgdate
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: apt upgrade
+  apt:
+    upgrade: safe
+  become: yes
+
+- name: install bluetooth firmware
+  apt:
+    name: pi-bluetooth
+  become: yes
+  register: bluetooth_installed
+
+- name: reboot
+  reboot:
+  when: bluetooth_installed.changed

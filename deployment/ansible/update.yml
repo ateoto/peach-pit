@@ -1,0 +1,6 @@
+---
+
+- name: Keep Systems updated
+  hosts: all
+  roles:
+    - upgrade

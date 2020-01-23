@@ -1,0 +1,7 @@
+---
+
+- name: Setup Pis
+  hosts: pis
+  roles:
+    - upgrade
+    - mqtt
