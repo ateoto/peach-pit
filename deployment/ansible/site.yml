@@ -1,0 +1,12 @@
+---
+
+- name: Deploy Home Assistant
+  hosts: main
+
+  roles:
+    - deploy_homeassistant
+
+- name: Keep Systems updated
+  hosts: all
+  roles:
+    - upgrade

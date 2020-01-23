@@ -1,0 +1,39 @@
+---
+
+- name: Sync Config
+  copy:
+    src: ../../home-assistant/
+    dest: /home/mmccants/homeassistant/ # TODO: Don't install here.
+
+- name: Ensure we have python docker package available
+  pip:
+    name: docker
+    state: present
+
+- name: Get Latest Stable Home Assistant Package
+  docker_image:
+    name: homeassistant/home-assistant:stable
+    source: pull
+    force_source: true
+    state: present
+
+# Will probably switch this to a docker-compose file at some point
+- name: Stop Home Assistant
+  docker_container:
+    name: home-assistant
+    state: stopped
+
+- name: Start Home Assistant
+  docker_container:
+    name: home-assistant
+    image: homeassistant/home-assistant:stable
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+      - "/dev/ttyUSB1:/dev/ttyUSB1"
+    volumes:
+      - "/home/mmccants/homeassistant:/config"
+    env:
+      TZ: America/New_York
+    init: true
+    network_mode: host
+    state: started

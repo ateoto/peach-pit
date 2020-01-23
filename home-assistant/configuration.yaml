@@ -26,20 +26,6 @@ sensor:
     region: 'US'
     name: Matt's Commute
 
-binary_sensor:
-  - platform: template
-    sensors:
-      aeotec_limited_zwa008_door_window_sensor_7:
-        friendly_name: "Basement Garage Door"
-        device_class: door
-        value_template: "{{ is_state('aeotec_limited_zwa008_door_window_sensor_7_access_control', '22') }}"
-
-weather:
-  - platform: darksky
-    api_key: !secret darksky_token
-    units: si
-
-sensor:
   - platform: synologydsm
     host: 192.168.1.200
     username: !secret synology_user
@@ -48,7 +34,26 @@ sensor:
       - cpu_total_load
       - memory_real_usage
 
-    
+unifi:
+  controllers:
+    - host: 192.168.1.95
+      site: 'Hiss Town'
+      dont_track_wired_clients: true
+      dont_track_devices: true
+
+binary_sensor:
+  - platform: template
+    sensors:
+      aeotec_limited_zwa008_door_window_sensor_7:
+        friendly_name: "Basement Garage Door"
+        device_class: door
+        value_template: "{{ is_state('sensor.aeotec_limited_zwa008_door_window_sensor_7_access_control', '22') }}"
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_token
+    units: si
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml

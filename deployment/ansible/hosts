@@ -1,0 +1,8 @@
+[main]
+eagle ansible_python_interpreter=/usr/bin/python3
+
+[pis]
+hen
+zero00
+zero01
+zero02

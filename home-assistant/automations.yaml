@@ -8,7 +8,6 @@
   action:
     entity_id:
       - switch.basement_grow_light
-      - switch.window_grow_light
     service: switch.turn_on
 - id: '1578422662757'
   alias: Turn Off Grow Lights
@@ -19,7 +18,6 @@
   condition: []
   action:
     entity_id: 
-     - switch.basement_grow_light
      - switch.basement_grow_light
     service: switch.turn_off
 - id: '1578458330465'
@@ -41,3 +39,70 @@
   action:
     entity_id: switch.bedroom_box_fan
     service: switch.turn_off
+- id: '1579734926535'
+  alias: Turn off Office Lights if I leave the room
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.aeon_labs_zw100_multisensor_6_sensor_3
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - device_id: cc4cfbc11ef64d6caf77afb9df93d938
+    domain: light
+    entity_id: light.floor_lamp_office_1
+    type: turn_off
+  - device_id: edeb550248ca492b9a621345d66567db
+    domain: light
+    entity_id: light.floor_lamp_office_2
+    type: turn_off
+  - device_id: 34890a1a1ddf410e8016365325fe8f49
+    domain: light
+    entity_id: light.floor_lamp_office_3
+    type: turn_off
+  - device_id: 7df6679dadaf4f179daf149705ec4817
+    domain: light
+    entity_id: light.matt_desk_strip
+    type: turn_off
+  - device_id: caa8b6e4daca42b08ee49b29d421d647
+    domain: light
+    entity_id: light.overhead_east
+    type: turn_off
+  - device_id: f3e3fd2472054a229abc927e160c5e85
+    domain: light
+    entity_id: light.overhead_west
+    type: turn_off
+- alias: Turn on Office Lights if I enter the room
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.aeon_labs_zw100_multisensor_6_sensor_3
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - device_id: cc4cfbc11ef64d6caf77afb9df93d938
+    domain: light
+    entity_id: light.floor_lamp_office_1
+    type: turn_on
+  - device_id: edeb550248ca492b9a621345d66567db
+    domain: light
+    entity_id: light.floor_lamp_office_2
+    type: turn_on
+  - device_id: 34890a1a1ddf410e8016365325fe8f49
+    domain: light
+    entity_id: light.floor_lamp_office_3
+    type: turn_on
+  - device_id: 7df6679dadaf4f179daf149705ec4817
+    domain: light
+    entity_id: light.matt_desk_strip
+    type: turn_on
+  - device_id: caa8b6e4daca42b08ee49b29d421d647
+    domain: light
+    entity_id: light.overhead_east
+    type: turn_on
+  - device_id: f3e3fd2472054a229abc927e160c5e85
+    domain: light
+    entity_id: light.overhead_west
+    type: turn_on
